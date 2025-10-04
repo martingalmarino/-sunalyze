@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next'
 import { statesSolarData } from '../lib/statesData'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://solarcalculator.com' // Replace with your actual domain
+  const baseUrl = 'https://sunalyze.vercel.app'
   
   // Main pages
   const routes = [
