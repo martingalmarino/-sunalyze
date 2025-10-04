@@ -21,7 +21,8 @@
     "start": "next start",
     "lint": "next lint",
     "type-check": "tsc --noEmit",
-    "build:analyze": "ANALYZE=true npm run build"
+    "build:analyze": "ANALYZE=true npm run build",
+    "vercel-build": "npm run build"
   },
   "dependencies": {
     "react": "18.3.1",
