@@ -18,11 +18,23 @@ export default function SolarCalculatorPage() {
       </section>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-b from-primary to-secondary text-white py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Solar Panel Savings Calculator
-          </h1>
+      <section className="relative bg-gradient-to-b from-primary to-secondary text-white py-16 overflow-hidden">
+        {/* Subtle solar panel pattern overlay */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-8 right-8 w-28 h-28 bg-white rounded-full blur-3xl"></div>
+          <div className="absolute top-16 left-16 w-20 h-20 bg-white rounded-full blur-2xl"></div>
+          <div className="absolute bottom-16 right-1/3 w-16 h-16 bg-white rounded-full blur-xl"></div>
+          {/* Subtle diagonal lines pattern */}
+          <div className="absolute inset-0" style={{
+            backgroundImage: `linear-gradient(45deg, rgba(255,255,255,0.05) 25%, transparent 25%),
+                             linear-gradient(-45deg, rgba(255,255,255,0.05) 25%, transparent 25%)`,
+            backgroundSize: '40px 40px'
+          }}></div>
+        </div>
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+              <h1 className="text-4xl md:text-5xl font-bold mb-4">
+                Sunalyze - Solar Panel Savings Calculator
+              </h1>
           <p className="text-xl opacity-90 max-w-2xl mx-auto">
             Get your personalized solar savings estimate in just a few minutes
           </p>

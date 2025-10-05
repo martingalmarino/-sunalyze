@@ -17,7 +17,7 @@ export default function Footer() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
                 </svg>
               </div>
-              <span className="text-xl font-bold text-text-primary">SolarCalc</span>
+                  <span className="text-xl font-bold text-text-primary">Sunalyze</span>
             </div>
             <p className="text-text-secondary text-sm mb-4">
               Calculate your solar panel savings with our free, accurate calculator. 
@@ -113,7 +113,7 @@ export default function Footer() {
         <div className="border-t border-divider mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="text-sm text-text-muted mb-4 md:mb-0">
-              © 2025 SolarCalc. All rights reserved. 
+                  © 2025 Sunalyze. All rights reserved.
               <span className="ml-2">
                 <Link href="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link>
                 <span className="mx-2">•</span>

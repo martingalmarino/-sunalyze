@@ -7,8 +7,8 @@ import Footer from '../components/Footer'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Solar Panel Savings Calculator',
-  description: 'Calculate your solar panel savings and ROI',
+  title: 'Sunalyze - Solar Panel Savings Calculator',
+  description: 'Calculate your solar panel savings and ROI with Sunalyze',
 }
 
 export default function RootLayout({

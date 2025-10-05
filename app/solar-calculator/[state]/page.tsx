@@ -51,8 +51,22 @@ export default function StateSolarPage({ params }: { params: { state: string } }
             </div>
           </section>
           {/* Hero Section */}
-          <section className="bg-gradient-to-b from-primary to-secondary text-white py-16">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <section className="relative bg-gradient-to-b from-primary to-secondary text-white py-16 overflow-hidden">
+            {/* State-specific solar pattern overlay */}
+            <div className="absolute inset-0 opacity-15">
+              <div className="absolute top-12 right-12 w-36 h-36 bg-white rounded-full blur-3xl"></div>
+              <div className="absolute top-20 left-20 w-24 h-24 bg-white rounded-full blur-2xl"></div>
+              <div className="absolute bottom-20 right-1/4 w-20 h-20 bg-white rounded-full blur-xl"></div>
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-28 h-28 bg-white rounded-full blur-2xl"></div>
+              {/* Subtle hexagonal pattern */}
+              <div className="absolute inset-0" style={{
+                backgroundImage: `radial-gradient(circle at 50% 50%, rgba(255,255,255,0.08) 2px, transparent 2px),
+                                 radial-gradient(circle at 25% 25%, rgba(255,255,255,0.04) 1px, transparent 1px),
+                                 radial-gradient(circle at 75% 75%, rgba(255,255,255,0.04) 1px, transparent 1px)`,
+                backgroundSize: '50px 50px'
+              }}></div>
+            </div>
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
               Solar Panel Savings in {data.name}
