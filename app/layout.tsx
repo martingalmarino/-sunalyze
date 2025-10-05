@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import Script from 'next/script'
 import './globals.css'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
@@ -28,28 +27,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Script 
-          src="https://cdn.cookiehub.eu/c2/300c8804.js"
-          strategy="afterInteractive"
-        />
-        <Script
-          id="cookiehub-init"
-          strategy="afterInteractive"
-        >
-          {`
-            document.addEventListener("DOMContentLoaded", function(event) {
-              var cpm = {};
-              window.cookiehub.load(cpm);
-              
-              // Debug function to reset cookies (remove in production)
-              window.resetCookieHub = function() {
-                document.cookie = "cookiehub=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.sunalyze.net";
-                document.cookie = "cookiehub=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-                location.reload();
-              };
-            });
-          `}
-        </Script>
         <Header />
         <main>{children}</main>
         <Footer />
