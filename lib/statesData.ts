@@ -22,7 +22,7 @@ export const statesSolarData: StateSolarData[] = [
   { code: "HI", name: "Hawaii", avgElectricityPrice: 0.32, sunlightHours: 5.5, incentiveFederal: 0.30, incentiveState: 0.08 },
   { code: "GA", name: "Georgia", avgElectricityPrice: 0.12, sunlightHours: 4.8, incentiveFederal: 0.30, incentiveState: 0.03 },
   { code: "NC", name: "North Carolina", avgElectricityPrice: 0.12, sunlightHours: 4.6, incentiveFederal: 0.30, incentiveState: 0.04 },
-  { code: "SC", name: "South Carolina", avgElectricityPrice: 0.13, sunlightHours: 4.8, incentiveFederal: 0.30, incentiveState: 0.03 }
+  { code: "SC", name: "South Carolina", avgElectricityPrice: 0.13, sunlightHours: 4.8, incentiveFederal: 0.30, incentiveState: 0.03 },
   { code: "MA", name: "Massachusetts", avgElectricityPrice: 0.25, sunlightHours: 4.1, incentiveFederal: 0.30, incentiveState: 0.08 },
   { code: "NJ", name: "New Jersey", avgElectricityPrice: 0.18, sunlightHours: 4.3, incentiveFederal: 0.30, incentiveState: 0.06 },
   { code: "IL", name: "Illinois", avgElectricityPrice: 0.14, sunlightHours: 4.2, incentiveFederal: 0.30, incentiveState: 0.05 },
