@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import Script from 'next/script'
 import './globals.css'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
@@ -27,6 +28,23 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        {/* CookieHub Scripts */}
+        <Script 
+          src="https://cdn.cookiehub.eu/c2/f775727b.js"
+          strategy="afterInteractive"
+        />
+        <Script
+          id="cookiehub-init"
+          strategy="afterInteractive"
+        >
+          {`
+            document.addEventListener("DOMContentLoaded", function(event) {
+              var cpm = {};
+              window.cookiehub.load(cpm);
+            });
+          `}
+        </Script>
+        
         <Header />
         <main>{children}</main>
         <Footer />
