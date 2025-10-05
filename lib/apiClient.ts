@@ -75,18 +75,7 @@ export async function getSunlightHours(lat: number, lon: number): Promise<number
   if (lat > 30) return 5.5; // Southern states (TX, FL, etc.)
   return 6.0; // Very southern states (AZ, NM, etc.)
 }
-    });
     
-    // Extract average daily peak sun hours from NREL data
-    const avgDni = response.data.outputs?.avg_dni?.annual;
-    if (avgDni) {
-      // Convert annual DNI to daily peak sun hours (simplified calculation)
-      return 5.5; // CA fallback
-    }
-    
-    // Fallback value
-    return 5.5; // Default fallback
-  } catch (error) {
     console.error("Error fetching sunlight data from NREL:", error);
     // Return a reasonable fallback based on latitude
     if (lat > 45) return 4.0; // Northern states
@@ -112,22 +101,10 @@ export async function getElectricityPrice(stateCode: string): Promise<number> {
           stateid: [stateCode] 
         }
       }
-    });
 
     const price = response.data?.response?.data?.[0]?.value;
     if (price && price > 0) {
       return Math.round(price * 100) / 100; // Round to 2 decimal places
-    }
-    
-    // Fallback prices by state
-    const fallbackPrices: { [key: string]: number } = {
-      CA: 0.28, NY: 0.22, TX: 0.14, FL: 0.13, AZ: 0.12,
-      CO: 0.13, NJ: 0.18, MA: 0.25, IL: 0.14, NC: 0.12,
-      GA: 0.13, VA: 0.13, WA: 0.11, OR: 0.11, NV: 0.12
-    };
-    
-    return fallbackPrices[stateCode] || 0.15;
-  } catch (error) {
     console.error("Error fetching electricity price from EIA:", error);
     
     // Fallback prices by state
