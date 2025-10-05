@@ -7,10 +7,31 @@ export default function Home() {
           {/* Hero Section */}
           <section className="relative overflow-hidden bg-gradient-to-b from-primary to-secondary text-white">
             <div className="absolute inset-0 bg-black opacity-10"></div>
+            {/* Subtle grid pattern overlay */}
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute inset-0" style={{
+                backgroundImage: `
+                  linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+                  linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
+                `,
+                backgroundSize: '40px 40px'
+              }}></div>
+              {/* Diagonal grid overlay */}
+              <div className="absolute inset-0" style={{
+                backgroundImage: `
+                  linear-gradient(45deg, rgba(255,255,255,0.05) 25%, transparent 25%),
+                  linear-gradient(-45deg, rgba(255,255,255,0.05) 25%, transparent 25%),
+                  linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.05) 75%),
+                  linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.05) 75%)
+                `,
+                backgroundSize: '20px 20px',
+                backgroundPosition: '0 0, 0 10px, 10px -10px, -10px 0px'
+              }}></div>
+            </div>
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
               <div className="text-center">
                 <h1 className="text-5xl md:text-6xl font-bold mb-6">
-                  Solar Panel Savings Calculator
+                  Sunalyze - Solar Panel Savings Calculator
                 </h1>
                 <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed text-white/90">
                   Calculate your potential savings with solar panels and find the best local installers
@@ -279,8 +300,38 @@ export default function Home() {
           </section>
 
           {/* CTA Section */}
-          <section className="py-16 bg-gradient-to-r from-primary to-secondary text-white">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <section className="relative py-16 bg-gradient-to-r from-primary to-secondary text-white overflow-hidden">
+            {/* Elegant grid pattern overlay */}
+            <div className="absolute inset-0 opacity-12">
+              {/* Main grid */}
+              <div className="absolute inset-0" style={{
+                backgroundImage: `
+                  linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px),
+                  linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px)
+                `,
+                backgroundSize: '50px 50px'
+              }}></div>
+              {/* Subtle dots pattern */}
+              <div className="absolute inset-0" style={{
+                backgroundImage: `
+                  radial-gradient(circle at 25% 25%, rgba(255,255,255,0.08) 2px, transparent 2px),
+                  radial-gradient(circle at 75% 75%, rgba(255,255,255,0.08) 2px, transparent 2px)
+                `,
+                backgroundSize: '25px 25px'
+              }}></div>
+              {/* Crosshatch pattern */}
+              <div className="absolute inset-0" style={{
+                backgroundImage: `
+                  linear-gradient(45deg, rgba(255,255,255,0.03) 25%, transparent 25%),
+                  linear-gradient(-45deg, rgba(255,255,255,0.03) 25%, transparent 25%),
+                  linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.03) 75%),
+                  linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.03) 75%)
+                `,
+                backgroundSize: '15px 15px',
+                backgroundPosition: '0 0, 0 7.5px, 7.5px -7.5px, -7.5px 0px'
+              }}></div>
+            </div>
+            <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
                 Ready to Calculate Your Solar Savings?
               </h2>

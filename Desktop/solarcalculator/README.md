@@ -1,4 +1,4 @@
-# SolarCalc - Solar Panel Savings Calculator
+# Sunalyze - Solar Panel Savings Calculator
 
 A comprehensive Next.js application for calculating solar panel savings and ROI across different US states. Built with TypeScript, TailwindCSS, and optimized for SEO.
 
@@ -84,7 +84,7 @@ A comprehensive Next.js application for calculating solar panel savings and ROI 
 │   ├── Breadcrumbs.tsx      # Breadcrumb navigation
 │   ├── Footer.tsx           # Site footer
 │   ├── Header.tsx           # Site header
-│   └── SolarCalculator.tsx  # Main calculator component
+│   └── SolarCalculator.tsx  # Main calculator component (Sunalyze branded)
 ├── lib/
 │   ├── calcROI.ts           # ROI calculation logic
 │   ├── statesData.ts        # State data and utilities

@@ -18,11 +18,33 @@ export default function SolarCalculatorPage() {
       </section>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-b from-primary to-secondary text-white py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Solar Panel Savings Calculator
-          </h1>
+      <section className="relative bg-gradient-to-b from-primary to-secondary text-white py-16 overflow-hidden">
+        {/* Clean grid pattern overlay */}
+        <div className="absolute inset-0 opacity-8">
+          {/* Main grid lines */}
+          <div className="absolute inset-0" style={{
+            backgroundImage: `
+              linear-gradient(rgba(255,255,255,0.12) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255,255,255,0.12) 1px, transparent 1px)
+            `,
+            backgroundSize: '60px 60px'
+          }}></div>
+          {/* Subtle mesh pattern */}
+          <div className="absolute inset-0" style={{
+            backgroundImage: `
+              linear-gradient(45deg, rgba(255,255,255,0.04) 25%, transparent 25%),
+              linear-gradient(-45deg, rgba(255,255,255,0.04) 25%, transparent 25%),
+              linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.04) 75%),
+              linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.04) 75%)
+            `,
+            backgroundSize: '30px 30px',
+            backgroundPosition: '0 0, 0 15px, 15px -15px, -15px 0px'
+          }}></div>
+        </div>
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+              <h1 className="text-4xl md:text-5xl font-bold mb-4">
+                Sunalyze - Solar Panel Savings Calculator
+              </h1>
           <p className="text-xl opacity-90 max-w-2xl mx-auto">
             Get your personalized solar savings estimate in just a few minutes
           </p>

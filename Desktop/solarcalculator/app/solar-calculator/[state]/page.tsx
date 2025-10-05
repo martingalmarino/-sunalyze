@@ -51,8 +51,36 @@ export default function StateSolarPage({ params }: { params: { state: string } }
             </div>
           </section>
           {/* Hero Section */}
-          <section className="bg-gradient-to-b from-primary to-secondary text-white py-16">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <section className="relative bg-gradient-to-b from-primary to-secondary text-white py-16 overflow-hidden">
+            {/* Sophisticated grid pattern overlay */}
+            <div className="absolute inset-0 opacity-10">
+              {/* Primary grid */}
+              <div className="absolute inset-0" style={{
+                backgroundImage: `
+                  linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+                  linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
+                `,
+                backgroundSize: '45px 45px'
+              }}></div>
+              {/* Secondary grid */}
+              <div className="absolute inset-0" style={{
+                backgroundImage: `
+                  linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+                  linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)
+                `,
+                backgroundSize: '15px 15px'
+              }}></div>
+              {/* Subtle dots overlay */}
+              <div className="absolute inset-0" style={{
+                backgroundImage: `
+                  radial-gradient(circle at 20% 20%, rgba(255,255,255,0.06) 1px, transparent 1px),
+                  radial-gradient(circle at 80% 80%, rgba(255,255,255,0.06) 1px, transparent 1px),
+                  radial-gradient(circle at 50% 50%, rgba(255,255,255,0.03) 1px, transparent 1px)
+                `,
+                backgroundSize: '30px 30px'
+              }}></div>
+            </div>
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
               Solar Panel Savings in {data.name}

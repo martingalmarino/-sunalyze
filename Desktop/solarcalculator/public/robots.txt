@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://sunalyze.vercel.app/sitemap.xml
+Sitemap: https://www.sunalyze.net/sitemap.xml
 
 # Crawl-delay for polite crawling
 Crawl-delay: 1

@@ -1,11 +1,11 @@
 {
-  "name": "solar-calculator",
+  "name": "sunalyze",
   "version": "1.0.0",
   "description": "Solar Panel Savings Calculator - Calculate your potential savings with solar panels across different US states",
   "keywords": ["solar", "calculator", "renewable energy", "savings", "roi", "nextjs", "typescript"],
   "author": "Martin Galmarino <martingalmarino@gmail.com>",
   "license": "MIT",
-  "homepage": "https://sunalyze.vercel.app",
+  "homepage": "https://www.sunalyze.net",
   "repository": {
     "type": "git",
     "url": "https://github.com/martingalmarino/-sunalyze.git"
