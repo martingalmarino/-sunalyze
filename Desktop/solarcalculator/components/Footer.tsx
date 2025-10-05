@@ -115,9 +115,9 @@ export default function Footer() {
             <div className="text-sm text-text-muted mb-4 md:mb-0">
                   © 2025 Sunalyze. All rights reserved.
               <span className="ml-2">
-                <Link href="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link>
+                <Link href="#" className="hover:text-primary transition-colors">Privacy Policy</Link>
                 <span className="mx-2">•</span>
-                <Link href="/terms" className="hover:text-primary transition-colors">Terms of Service</Link>
+                <Link href="#" className="hover:text-primary transition-colors">Terms of Service</Link>
               </span>
             </div>
             <div className="text-sm text-text-muted">

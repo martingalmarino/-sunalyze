@@ -22,7 +22,17 @@ export const statesSolarData: StateSolarData[] = [
   { code: "HI", name: "Hawaii", avgElectricityPrice: 0.32, sunlightHours: 5.5, incentiveFederal: 0.30, incentiveState: 0.08 },
   { code: "GA", name: "Georgia", avgElectricityPrice: 0.12, sunlightHours: 4.8, incentiveFederal: 0.30, incentiveState: 0.03 },
   { code: "NC", name: "North Carolina", avgElectricityPrice: 0.12, sunlightHours: 4.6, incentiveFederal: 0.30, incentiveState: 0.04 },
-  { code: "SC", name: "South Carolina", avgElectricityPrice: 0.13, sunlightHours: 4.8, incentiveFederal: 0.30, incentiveState: 0.03 }
+  { code: "SC", name: "South Carolina", avgElectricityPrice: 0.13, sunlightHours: 4.8, incentiveFederal: 0.30, incentiveState: 0.03 },
+  { code: "MA", name: "Massachusetts", avgElectricityPrice: 0.25, sunlightHours: 4.1, incentiveFederal: 0.30, incentiveState: 0.08 },
+  { code: "NJ", name: "New Jersey", avgElectricityPrice: 0.18, sunlightHours: 4.3, incentiveFederal: 0.30, incentiveState: 0.06 },
+  { code: "IL", name: "Illinois", avgElectricityPrice: 0.14, sunlightHours: 4.2, incentiveFederal: 0.30, incentiveState: 0.05 },
+  { code: "PA", name: "Pennsylvania", avgElectricityPrice: 0.15, sunlightHours: 4.0, incentiveFederal: 0.30, incentiveState: 0.04 },
+  { code: "MD", name: "Maryland", avgElectricityPrice: 0.16, sunlightHours: 4.4, incentiveFederal: 0.30, incentiveState: 0.05 },
+  { code: "VA", name: "Virginia", avgElectricityPrice: 0.13, sunlightHours: 4.5, incentiveFederal: 0.30, incentiveState: 0.03 },
+  { code: "MN", name: "Minnesota", avgElectricityPrice: 0.14, sunlightHours: 4.0, incentiveFederal: 0.30, incentiveState: 0.04 },
+  { code: "WI", name: "Wisconsin", avgElectricityPrice: 0.15, sunlightHours: 3.9, incentiveFederal: 0.30, incentiveState: 0.03 },
+  { code: "OK", name: "Oklahoma", avgElectricityPrice: 0.12, sunlightHours: 5.5, incentiveFederal: 0.30, incentiveState: 0.04 },
+  { code: "KS", name: "Kansas", avgElectricityPrice: 0.13, sunlightHours: 5.2, incentiveFederal: 0.30, incentiveState: 0.03 }
 ];
 
 export function getStateBySlug(slug: string) {
