@@ -1,6 +1,8 @@
 "use client";
 import React, { useState } from "react";
-import { calcROI } from "../lib/calcROI";
+import { calcROI, calcROIWithLiveData } from "../lib/calcROI";
+import { getSolarData } from "../lib/apiClient";
+import { getStateIncentiveInfo } from "../lib/incentivesData";
 
 interface SolarCalculatorProps {
   defaultState?: string;
@@ -48,26 +50,58 @@ export default function SolarCalculator({
     setResult(null);
 
     try {
-      // Use mock data for now (simplified version)
-      const res = calcROI(zip, bill, size);
-      setResult({
-        state: res.state,
-        annualSavings: res.annualSavings,
-        roiYears: res.roiYears,
-        incentives: { federal: 30, state: 5 },
-        systemCost: size * 3000,
-        netCost: size * 3000 * 0.65,
-        annualProduction: Math.round(size * 5 * 365 * 0.85),
-        totalSavings: res.annualSavings * 25,
-        netSavings: (res.annualSavings * 25) - (size * 3000 * 0.65),
-        savingsPercentage: Math.round(((res.annualSavings * 25) - (size * 3000 * 0.65)) / (size * 3000) * 100),
-        paybackYears: Math.ceil(parseFloat(res.roiYears)),
-        electricityPrice: 0.15,
-        sunlightHours: 5.0
-      });
+      if (useLiveData) {
+        // Use live data from NREL and EIA via API route
+        const response = await fetch('/api/solar-data', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ zip }),
+        });
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch solar data');
+        }
+        
+        const solarData = await response.json();
+        const stateInfo = getStateIncentiveInfo(solarData.stateCode);
+        
+        const roi = calcROIWithLiveData({
+          annualSunHours: solarData.sunlightHours,
+          electricityPrice: solarData.electricityPrice,
+          systemSize: size,
+          stateCode: solarData.stateCode,
+          bill
+        });
+
+        setResult({
+          ...roi,
+          electricityPrice: solarData.electricityPrice,
+          sunlightHours: solarData.sunlightHours
+        });
+      } else {
+        // Use legacy mock data
+        const res = calcROI(zip, bill, size);
+        setResult({
+          state: res.state,
+          annualSavings: res.annualSavings,
+          roiYears: res.roiYears,
+          incentives: { federal: 30, state: 5 },
+          systemCost: size * 3000,
+          netCost: size * 3000 * 0.65,
+          annualProduction: Math.round(size * 5 * 365 * 0.85),
+          totalSavings: res.annualSavings * 25,
+          netSavings: (res.annualSavings * 25) - (size * 3000 * 0.65),
+          savingsPercentage: Math.round(((res.annualSavings * 25) - (size * 3000 * 0.65)) / (size * 3000) * 100),
+          paybackYears: Math.ceil(parseFloat(res.roiYears)),
+          electricityPrice: 0.15,
+          sunlightHours: 5.0
+        });
+      }
     } catch (err) {
       console.error("Calculation error:", err);
-      setError("Failed to calculate. Please try again.");
+      setError("Failed to fetch live data. Please try again or use mock data mode.");
     } finally {
       setLoading(false);
     }
@@ -81,32 +115,46 @@ export default function SolarCalculator({
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
           </svg>
         </div>
-        <h1 className="text-2xl font-bold text-text-primary mb-2">🔥 DEPLOYMENT TEST - TOGGLE SHOULD BE HERE 🔥</h1>
+        <h1 className="text-2xl font-bold text-text-primary mb-2">Solar Panel Savings Calculator</h1>
         <p className="text-text-secondary">Get your personalized savings estimate with live data</p>
-        <p className="text-xs text-red-500 mt-2">TOGGLE SHOULD BE VISIBLE BELOW - DEPLOYMENT TEST</p>
         
         {/* Data Source Toggle */}
-        <div className="mt-4 flex items-center justify-center space-x-6">
-          <label className="flex items-center cursor-pointer">
-            <input
-              type="radio"
-              name="dataSource"
-              checked={useLiveData}
-              onChange={() => setUseLiveData(true)}
-              className="mr-2 w-4 h-4 text-primary bg-background border-divider focus:ring-primary focus:ring-2"
-            />
-            <span className="text-sm text-text-secondary hover:text-text-primary">Live Data</span>
-          </label>
-          <label className="flex items-center cursor-pointer">
-            <input
-              type="radio"
-              name="dataSource"
-              checked={!useLiveData}
-              onChange={() => setUseLiveData(false)}
-              className="mr-2 w-4 h-4 text-primary bg-background border-divider focus:ring-primary focus:ring-2"
-            />
-            <span className="text-sm text-text-secondary hover:text-text-primary">Mock Data</span>
-          </label>
+        <div className="mt-6">
+          <p className="text-sm text-text-secondary text-center mb-3">Data Source</p>
+          <div className="flex items-center justify-center bg-background-light rounded-lg p-1 border border-divider">
+            <button
+              onClick={() => setUseLiveData(true)}
+              className={`flex items-center px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
+                useLiveData
+                  ? 'bg-primary text-white shadow-sm'
+                  : 'text-text-secondary hover:text-text-primary'
+              }`}
+            >
+              <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+              Live Data
+            </button>
+            <button
+              onClick={() => setUseLiveData(false)}
+              className={`flex items-center px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
+                !useLiveData
+                  ? 'bg-primary text-white shadow-sm'
+                  : 'text-text-secondary hover:text-text-primary'
+              }`}
+            >
+              <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              Mock Data
+            </button>
+          </div>
+          <p className="text-xs text-text-muted text-center mt-2">
+            {useLiveData 
+              ? "Real-time solar and electricity data from government sources"
+              : "Sample data for testing and demonstration"
+            }
+          </p>
         </div>
       </div>
 
@@ -169,7 +217,7 @@ export default function SolarCalculator({
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
-                Calculating...
+                {useLiveData ? "Fetching Live Data..." : "Calculating..."}
               </>
             ) : (
               <>
@@ -198,7 +246,7 @@ export default function SolarCalculator({
               </svg>
             </div>
             <h3 className="text-lg font-semibold text-text-primary mb-2">Your Solar Savings Estimate</h3>
-            <p className="text-sm text-text-muted">Based on current data and calculations</p>
+            <p className="text-sm text-text-muted">{useLiveData ? "Based on live data from NREL & EIA" : "Based on mock data"}</p>
           </div>
 
           <div className="space-y-4">
