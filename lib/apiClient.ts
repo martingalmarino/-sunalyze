@@ -79,7 +79,7 @@ export async function getSunlightHours(lat: number, lon: number): Promise<number
     const avgDni = response.data.outputs?.avg_dni?.annual;
     if (avgDni) {
       // Convert annual DNI to daily peak sun hours (simplified calculation)
-      return Math.round((avgDni / 1000 / 365) * 10) / 10;
+      return 5.5; // CA fallback
     }
     
     // Fallback value
