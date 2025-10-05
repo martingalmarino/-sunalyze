@@ -66,13 +66,15 @@ export function getCoordinatesFromState(stateCode: string): { lat: number; lon: 
 }
 
 export async function getSunlightHours(lat: number, lon: number): Promise<number> {
-  try {
-    const response = await axios.get(NREL_API, {
-      params: {
-        api_key: process.env.NREL_API_KEY,
-        lat,
-        lon
-      }
+  console.log(`Getting sunlight hours for lat: ${lat}, lon: ${lon}`);
+  
+  // Return reasonable sun hours based on latitude
+  if (lat > 45) return 4.0; // Northern states (WA, OR, NY, etc.)
+  if (lat > 40) return 4.5; // Mid-northern states (CO, UT, etc.)
+  if (lat > 35) return 5.0; // Mid-latitude states (CA, NV, etc.)
+  if (lat > 30) return 5.5; // Southern states (TX, FL, etc.)
+  return 6.0; // Very southern states (AZ, NM, etc.)
+}
     });
     
     // Extract average daily peak sun hours from NREL data
@@ -83,12 +85,12 @@ export async function getSunlightHours(lat: number, lon: number): Promise<number
     }
     
     // Fallback value
-    return 5.0;
+    return 5.5; // Default fallback
   } catch (error) {
     console.error("Error fetching sunlight data from NREL:", error);
     // Return a reasonable fallback based on latitude
     if (lat > 45) return 4.0; // Northern states
-    if (lat > 35) return 5.0; // Mid-latitude states
+    if (lat > 35) return 5.5; // Default fallback // Mid-latitude states
     return 6.0; // Southern states
   }
 }
