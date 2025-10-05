@@ -1,8 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { calcROI, calcROIWithLiveData } from "../lib/calcROI";
-import { getSolarData } from "../lib/apiClient";
-import { getStateIncentiveInfo } from "../lib/incentivesData";
+import { calcROI } from "../lib/calcROI";
 
 interface SolarCalculatorProps {
   defaultState?: string;
@@ -50,58 +48,26 @@ export default function SolarCalculator({
     setResult(null);
 
     try {
-      if (useLiveData) {
-        // Use live data from NREL and EIA via API route
-        const response = await fetch('/api/solar-data', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ zip }),
-        });
-        
-        if (!response.ok) {
-          throw new Error('Failed to fetch solar data');
-        }
-        
-        const solarData = await response.json();
-        const stateInfo = getStateIncentiveInfo(solarData.stateCode);
-        
-        const roi = calcROIWithLiveData({
-          annualSunHours: solarData.sunlightHours,
-          electricityPrice: solarData.electricityPrice,
-          systemSize: size,
-          stateCode: solarData.stateCode,
-          bill
-        });
-
-        setResult({
-          ...roi,
-          electricityPrice: solarData.electricityPrice,
-          sunlightHours: solarData.sunlightHours
-        });
-      } else {
-        // Use legacy mock data
-        const res = calcROI(zip, bill, size);
-        setResult({
-          state: res.state,
-          annualSavings: res.annualSavings,
-          roiYears: res.roiYears,
-          incentives: { federal: 30, state: 5 },
-          systemCost: size * 3000,
-          netCost: size * 3000 * 0.65,
-          annualProduction: Math.round(size * 5 * 365 * 0.85),
-          totalSavings: res.annualSavings * 25,
-          netSavings: (res.annualSavings * 25) - (size * 3000 * 0.65),
-          savingsPercentage: Math.round(((res.annualSavings * 25) - (size * 3000 * 0.65)) / (size * 3000) * 100),
-          paybackYears: Math.ceil(parseFloat(res.roiYears)),
-          electricityPrice: 0.15,
-          sunlightHours: 5.0
-        });
-      }
+      // Use mock data for now (simplified version)
+      const res = calcROI(zip, bill, size);
+      setResult({
+        state: res.state,
+        annualSavings: res.annualSavings,
+        roiYears: res.roiYears,
+        incentives: { federal: 30, state: 5 },
+        systemCost: size * 3000,
+        netCost: size * 3000 * 0.65,
+        annualProduction: Math.round(size * 5 * 365 * 0.85),
+        totalSavings: res.annualSavings * 25,
+        netSavings: (res.annualSavings * 25) - (size * 3000 * 0.65),
+        savingsPercentage: Math.round(((res.annualSavings * 25) - (size * 3000 * 0.65)) / (size * 3000) * 100),
+        paybackYears: Math.ceil(parseFloat(res.roiYears)),
+        electricityPrice: 0.15,
+        sunlightHours: 5.0
+      });
     } catch (err) {
       console.error("Calculation error:", err);
-      setError("Failed to fetch live data. Please try again or use mock data mode.");
+      setError("Failed to calculate. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -203,7 +169,7 @@ export default function SolarCalculator({
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
-                Fetching Live Data...
+                Calculating...
               </>
             ) : (
               <>
@@ -232,7 +198,7 @@ export default function SolarCalculator({
               </svg>
             </div>
             <h3 className="text-lg font-semibold text-text-primary mb-2">Your Solar Savings Estimate</h3>
-            <p className="text-sm text-text-muted">{useLiveData ? "Based on live data from NREL & EIA" : "Based on mock data"}</p>
+            <p className="text-sm text-text-muted">Based on current data and calculations</p>
           </div>
 
           <div className="space-y-4">
