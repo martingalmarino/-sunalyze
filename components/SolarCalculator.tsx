@@ -32,7 +32,7 @@ export default function SolarCalculator({
               </svg>
             </div>
             <h1 className="text-2xl font-bold text-text-primary mb-2">Solar Panel Savings Calculator</h1>
-            <p className="text-text-secondary">Get your personalized savings estimate - UPDATED 22:45</p>
+            <p className="text-text-secondary">Get your personalized savings estimate - FIXED 23:15</p>
           </div>
 
       <div className="space-y-6">
