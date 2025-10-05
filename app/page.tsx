@@ -7,12 +7,27 @@ export default function Home() {
           {/* Hero Section */}
           <section className="relative overflow-hidden bg-gradient-to-b from-primary to-secondary text-white">
             <div className="absolute inset-0 bg-black opacity-10"></div>
-            {/* Subtle sun pattern overlay */}
-            <div className="absolute inset-0 opacity-20">
-              <div className="absolute top-10 right-10 w-32 h-32 bg-white rounded-full blur-3xl"></div>
-              <div className="absolute top-20 left-20 w-24 h-24 bg-white rounded-full blur-2xl"></div>
-              <div className="absolute bottom-20 right-1/3 w-20 h-20 bg-white rounded-full blur-xl"></div>
-              <div className="absolute top-1/3 left-1/3 w-16 h-16 bg-white rounded-full blur-lg"></div>
+            {/* Clean grid pattern overlay */}
+            <div className="absolute inset-0 opacity-10">
+              {/* Main grid lines */}
+              <div className="absolute inset-0" style={{
+                backgroundImage: `
+                  linear-gradient(rgba(255,255,255,0.12) 1px, transparent 1px),
+                  linear-gradient(90deg, rgba(255,255,255,0.12) 1px, transparent 1px)
+                `,
+                backgroundSize: '40px 40px'
+              }}></div>
+              {/* Diagonal mesh pattern */}
+              <div className="absolute inset-0" style={{
+                backgroundImage: `
+                  linear-gradient(45deg, rgba(255,255,255,0.04) 25%, transparent 25%),
+                  linear-gradient(-45deg, rgba(255,255,255,0.04) 25%, transparent 25%),
+                  linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.04) 75%),
+                  linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.04) 75%)
+                `,
+                backgroundSize: '20px 20px',
+                backgroundPosition: '0 0, 0 10px, 10px -10px, -10px 0px'
+              }}></div>
             </div>
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
               <div className="text-center">
@@ -287,18 +302,34 @@ export default function Home() {
 
           {/* CTA Section */}
           <section className="relative py-16 bg-gradient-to-r from-primary to-secondary text-white overflow-hidden">
-            {/* Subtle geometric pattern overlay */}
-            <div className="absolute inset-0 opacity-15">
-              <div className="absolute top-0 left-0 w-full h-full">
-                <div className="absolute top-1/4 left-1/4 w-40 h-40 bg-white rounded-full blur-3xl"></div>
-                <div className="absolute bottom-1/4 right-1/4 w-32 h-32 bg-white rounded-full blur-2xl"></div>
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-white rounded-full blur-xl"></div>
-              </div>
-              {/* Subtle grid pattern */}
+            {/* Elegant grid pattern overlay */}
+            <div className="absolute inset-0 opacity-12">
+              {/* Main grid */}
               <div className="absolute inset-0" style={{
-                backgroundImage: `radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 1px, transparent 1px),
-                                 radial-gradient(circle at 75% 75%, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-                backgroundSize: '60px 60px'
+                backgroundImage: `
+                  linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px),
+                  linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px)
+                `,
+                backgroundSize: '50px 50px'
+              }}></div>
+              {/* Subtle dots pattern */}
+              <div className="absolute inset-0" style={{
+                backgroundImage: `
+                  radial-gradient(circle at 25% 25%, rgba(255,255,255,0.08) 2px, transparent 2px),
+                  radial-gradient(circle at 75% 75%, rgba(255,255,255,0.08) 2px, transparent 2px)
+                `,
+                backgroundSize: '25px 25px'
+              }}></div>
+              {/* Crosshatch pattern */}
+              <div className="absolute inset-0" style={{
+                backgroundImage: `
+                  linear-gradient(45deg, rgba(255,255,255,0.03) 25%, transparent 25%),
+                  linear-gradient(-45deg, rgba(255,255,255,0.03) 25%, transparent 25%),
+                  linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.03) 75%),
+                  linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.03) 75%)
+                `,
+                backgroundSize: '15px 15px',
+                backgroundPosition: '0 0, 0 7.5px, 7.5px -7.5px, -7.5px 0px'
               }}></div>
             </div>
             <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
