@@ -28,6 +28,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        {/* Google AdSense - Load before page becomes interactive */}
+        <Script
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6771833588582297"
+          strategy="beforeInteractive"
+          crossOrigin="anonymous"
+        />
         {/* CookieHub Scripts */}
         <Script 
           src="https://cdn.cookiehub.eu/c2/f775727b.js"
@@ -44,13 +50,6 @@ export default function RootLayout({
             });
           `}
         </Script>
-        
-        {/* Google AdSense */}
-        <Script
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6771833588582297"
-          strategy="afterInteractive"
-          crossOrigin="anonymous"
-        />
         
         <Header />
         <main>{children}</main>
